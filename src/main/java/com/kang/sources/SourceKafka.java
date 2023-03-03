@@ -19,11 +19,9 @@ public class SourceKafka {
 
         Properties props = new Properties();
         props.setProperty("bootstrap.servers", "hadoop101:9092");
-//        props.setProperty("group.id", "consumer-group");
-//        props.setProperty("key.deserializer",
-//                "org.apache.kafka.common.serialization.StringDeserializer");
-//        props.setProperty("value.deserializer",
-//                "org.apache.kafka.common.serialization.StringDeserializer");
+        props.setProperty("group.id", "consumer-group");
+        props.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        props.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.setProperty("auto.offset.reset", "latest");
         DataStreamSource<String> stream = env.addSource(new FlinkKafkaConsumer<String>(
                 "clicks", new SimpleStringSchema(), props
